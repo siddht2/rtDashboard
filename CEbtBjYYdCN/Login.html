@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="validationApp" ng-controller="mainController">
+   
+   <head>
+      <title>Create New Customer Account</title>
+      <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+          <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+      <!-- Bootstrap -->
+      <link href = "css/bootstrap.min.css" rel = "stylesheet">
+         <link href = "styleLogin.css" rel = "stylesheet"> 
+          <script src = "js/bootstrap.min.js"></script>
+          <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+   </head>
+   
+   <body>
+
+   <div class="account-login" class="container">
+    <div class="page-title">
+                    <h3>Login or Create an Account</h3>
+            </div>
+        <form action="" method="post" id="login-form" novalidate>
+        <div class="fieldset">
+            <div class="row">
+                <div class="col-sm-6 col-lg-5">
+                    <h4>Registered Customers</h4>
+                    <p>If you have an account with us, log in using your email address.</p>
+                    <ul class="form-list">
+                        <li>
+                            <div class="row">
+                              <div class="col-sm-3 col-lg-4">
+                                <label for="email" class="required"><em>* </em>Email</label>
+                              </div>
+                              <div class="col-sm-9 col-lg-8">
+                                <div class="input-box">
+                                  <input name="email" value=""  type="email" required ng-model="email" />
+                                </div>
+                              </div>
+                            </div>
+                        </li>
+                        <br>
+                        <li>
+                          <div class="row">
+                            <div class="col-sm-3 col-lg-4">
+                              <label for="pass" class="required"><em>*</em>Password</label>
+                            </div>
+                            <div class="col-sm-9 col-lg-8">
+                              <div class="input-box">
+                                <input name="password" type="password" autocomplete="off" />
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                    </ul>
+                    <div class="row">
+                      <div class="col-sm-8 col-sm-offset-4">
+                        <div class="buttons-set form-buttons btn-only">
+                          <button type="submit" class="button" name="send" id="send2"><span><span>Login</span></span></button>
+                          <a href="">Forgot Your Password?</a>
+                        </div>
+                        <p class="required"><span style="color:red">*</span>Required Fields</p>
+                      </div>
+                    </div>
+                </div>
+                                <div class="col-sm-5 col-lg-6 col-sm-offset-1">
+                    <h4>New Customers</h4>
+                    <p>By creating an account with us, you will be able to get acess to our system.</p>
+                    <div class="buttons-set">
+                        <button type="button" class="button" onclick="window.location='Register.html';"><span><span>Register</span></span></button>
+                    </div>
+                </div>
+                            </div>
+        </div>
+    </form>
+    </div>
+    </body>
+    </html>

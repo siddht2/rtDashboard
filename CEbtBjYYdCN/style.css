@@ -1,0 +1,14 @@
+.form-group.required:after {
+    content: "*";
+    color:red;
+   }
+
+.form-control{
+    width:97%;
+    float:left;
+}
+body
+{
+	color:#3399cc;
+}
+
