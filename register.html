@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+ <script>
+      var message="Function Disabled!"; function clickIE4(){ if (event.button==2){ alert(message); return false; } } function clickNS4(e){ if (document.layers||document.getElementById&&!document.all){ if (e.which==2||e.which==3){ alert(message); return false; } } } if (document.layers){ document.captureEvents(Event.MOUSEDOWN); document.onmousedown=clickNS4; } else if (document.all&&!document.getElementById){ document.onmousedown=clickIE4; } document.oncontextmenu=new Function("alert(message);return false")
+   </script>
+   <!--- title animate -->
+   <script>
+     var tx = new Array (
+'ResultsTrack',
+'Triggering Efficiency & Effectiveness',
+     'Registration ');
+var txcount=3;
+var i=1;
+var wo=0;
+var ud=1;
+function animatetitle()
+{
+window.document.title=tx[wo].substr(0, i)+"_";
+if (ud==0) i--;
+if (ud==1) i++;
+if (i==-1) {ud=1;i=0;wo++;wo=wo%txcount;}
+if (i==tx[wo].length+10) {ud=0;i=tx[wo].length;}
+// if (window.document.title.length < 20 ) window.document.title=window.document.title+"-";
+// if (window.document.title.length == 20 ) window.document.title=window.document.title+"]";
+// if (window.document.title.length == 21 ) setTimeout("window.document.title='Animierte Seitentitel '; ",1000);
+parent.window.document.title=tx[wo].substr(0, i)+"_";
+setTimeout("animatetitle()",200);
+}
+animatetitle();
+   </script>
+   
+   
+   <head>
+      <meta charset="UTF-8" />
+      <link rel="stylesheet" type="text/css" href="css/demo.css" />
+      <link rel="stylesheet" type="text/css" href="css/style3.css" />
+      <link rel="stylesheet" type="text/css" href="css/animate-custom.css" />
+      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="jquery-ui.css">
+      <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+      <script src="angular.min.js"></script>
+      <!-- Bootstrap -->
+      <!--  <link href = "bcss/bootstrap.min.css" rel = "stylesheet">
+         <script src = "js/bootstrap.min.js"></script>   -->
+      <script src="app.js"></script>
+   </head>
+   <body>
+      <div class="container">
+         <header>
+            <h1></h1>
+         </header>
+         <section>
+            <div id="container_demo" >
+               <a class="hiddenanchor" id="toregister"></a>
+               <a class="hiddenanchor" id="tologin"></a>
+               <div id="wrapper">
+                  <div id="login" class="animate form">
+                     <form action="" method="post" name="loginForm" novalidate ng-submit="submitForm(loginForm.$valid)"  ng-app="loginApp" ng-controller="loginCtrl">
+                        <h1>Log in</h1>
+                        <p> 
+                           <label for="email" class="required" data-icon="u"><em>* </em>Email-id</label>
+                           <input name="email" value=""  type="email" required ng-model="email" />
+                           <span style="color:red" ng-show="loginForm.email.$dirty && loginForm.email.$invalid">
+                           <span ng-show="loginForm.email.$error.required">Email is required.</span>
+                           <span ng-show="loginForm.email.$error.email">Invalid email address.</span>
+                           </span>
+                        </p>
+                        <p> 
+                           <label for="pass" data-icon="p"><em>*</em>Password</label>
+                           <input type="password" name="pass" ng-model="pass" required/>
+                           <span style="color:red" ng-show="loginForm.pass.$dirty && loginForm.pass.$invalid">
+                           <span ng-show="loginForm.pass.$error.required">Password is required.</span>
+                           </span>
+                        </p>
+                        </p>  
+                        <p class="login button"> 
+                           <button type="submit" class="button" name="send" ng-disabled="loginForm.$invalid"><span><span>Login</span></span></button>
+                           <a href="">Forgot Your Password?</a>
+                        </p>
+                        <p class="change_link">
+                           Not a member yet ?
+                           <a href="#toregister" class="to_register">Register</a>
+                        </p>
+                     </form>
+                  </div>
+                  <div id="register" class="animate form">
+                     <form action="" method="post" name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate  id="registerApp" ng-controller="registerCtrl" enctype="multipart/form-data" >
+                        <h1>Register</h1>
+                        <p> 
+                           <label  \for = "FirstName" data-icon="u">First Name</label>
+                           <input type = "text" placeholder = "Enter First Name" ng-model="firstName">
+                        </p>
+                        <p> 
+                           <label  \for = "LastName" data-icon="u">Last Name</label>
+                           <input type = "text" placeholder = "Enter Last Name" ng-model="lastName">
+                        </p>
+                        <p class="form-group" ng-class="{ 'has-error' : userForm.phone.$invalid && !userForm.phone.$pristine }">
+                           <label for = "Phone" data-icon="t">Contact Number</label>
+                           <input type = "number" class="form-control" name="phone" placeholder = "Enter Phone number" ng-model="phone" required>
+                        <p style="color:red" ng-show="userForm.phone.$invalid && userForm.phone.$touched" >Phone number is required.</p>
+                        </p>
+                        <p>
+                           <label for = "address" data-icon="a">Address</label>
+                           <input type="textarea"  rows = "3" ng-model="address" />
+                        </p>
+                        <p>
+                           <label for = "image" data-icon="u">Upload image</label>
+                           <input name="file" type="file" id="file" file-model="fileToUpload" />
+                        </p>
+                        <p ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }"> 
+                           <label for="emailsignup" name="email" placeholder="Enter email" ng-model="email" required="required" data-icon="e" > Your email</label>
+                           <input type="email" class="form-control" name="email" placeholder="Enter email" ng-model="email" required="required"/> 
+                        <p style="color:red" ng-show="userForm.email.$invalid && userForm.email.$touched">
+                           <span ng-show="userForm.email.$error.required">Email is required.</span>
+                           <span ng-show="userForm.email.$error.email">Invalid email address.</span>
+                        </p>
+                        </p>
+                        <p> 
+                           <label for="dob" class="dob" data-icon="d" > Your Date of birth</label>
+                          <input  id="datepicker" name="dob" required="required" type="Date" placeholder="" />   
+                        </p>
+                        <p> 
+                           <label for="gender" class="gender"> Gender</label>
+                        <div class="register-switch">
+                           <input type="radio" name="sex" value="F" id="sex_f" class="register-switch-input" checked>
+                           <label for="sex_f" class="register-switch-label">FEMALE</label>
+                           <input type="radio" name="sex" value="M" id="sex_m" class="register-switch-input">
+                           <label for="sex_m" class="register-switch-label"> MALE </label>
+                           <input type="radio" name="sex" value="T" id="sex_t" class="register-switch-input">
+                           <label for="sex_t" class="register-switch-label"> Others </label>
+                        </div>
+                        </p>
+                        <p>
+                           <label for="pwd" data-icon="p">Your password </label>
+                           <input type="password" name="pwd" placeholder="Enter password" ng-model="pwd" ng-maxlength="16" required   ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{6,}$/"
+                           >
+                           <span style="color:red" ng-show="userForm.pwd.$invalid && userForm.pwd.$dirty" >
+                           <span ng-show="userForm.pwd.$error.required">Password is required.</span>
+                           <span ng-show="userForm.pwd.$error.maxlength">Password is too long! Maximum length is 16.</span>
+                           <span ng-show="userForm.pwd.$error.pattern">Password should be atleast 6 characters long
+                    and should contain one number,one character and one special
+                    character</span>
+                           </span>
+                        </p>
+                        <p> 
+                           <label for="cpwd"  data-icon="p">Please confirm your password </label>
+                           <input type="password" name="cpwd" ng-model="cpwd" required ng-pattern="pwd">
+                           <span style="color:red" ng-show="userForm.cpwd.$invalid && userForm.cpwd.$dirty">
+                           <span ng-show="userForm.cpwd.$error.required">Password is required.</span>
+                           <span data-ng-show="userForm.cpwd.$error.pattern">Passwords don't match!</span>
+                           </span>
+                        </p>
+                        <p class="signin button">
+                           <!--<input type="submit" value="Sign up"/> -->
+                           <button type="submit" class="btn btn-default" ng-disabled="userForm.$invalid" >Log in</button>
+                        </p>
+                        <p class="change_link">  
+                           Already a member ?
+                           <a href="#tologin" class="to_register"> log in </a>
+                        </p>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </section>
+      </div>
+   </body>
+</html>
