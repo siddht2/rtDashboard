@@ -1,0 +1,14 @@
+{"name":"codi_bot",
+"active-workspace":"https://github.com/rtwork-space/codiad",
+"active-branch":"codiad",
+"build-workspace":"https://github.com/resultstrack/auto-build"
+"build-branch":"codiad",
+"project-source":"https://github.com/rtwork-space/rtDashboard",
+"project-branch":"branchone",
+"live-workspace":"http://subb.epizy.com/codiad/",
+"live-path":"",
+"live-user":"coo-bot",
+"live-user-both":"admin",
+"live-sync":"true"
+
+}
