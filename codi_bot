@@ -9,6 +9,8 @@
 "live-path":"",
 "live-user":"coo-bot",
 "live-user-both":"admin",
-"live-sync":"true"
+"live-sync":"true",
+"github-bot":"web-flow",
+"git-flow":"bi-directional"
 
 }
