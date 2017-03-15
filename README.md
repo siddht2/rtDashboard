@@ -11,6 +11,7 @@ Cleaning status     ------>  Active
 </br>
 <p>
 verifying integrity : Active 
+1st check : fail
 </p>
 </body>
 </html>
