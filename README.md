@@ -1,17 +1,19 @@
 <html>
 <body>
 <br>
-<p>this repo is been cleaned ,   
+<p>this repo has been cleaned ,   
 so update your forks </p>
 </br>
 <br>
 
-Cleaning status     ------>  Active
+Cleaning status     ------>  Complete
 
 </br>
+<br>
 <p>
-verifying integrity : Active 
-1st check : fail
+
+ online and github synced
 </p>
+</br>
 </body>
 </html>
