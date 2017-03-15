@@ -25,7 +25,7 @@ app.controller('loginCtrl', ['$scope','$location', function($scope,$location) {
       // check to make sure the form is completely valid
      if ($scope.loginForm.$valid) {
        alert('our form is amazing');
-var path = "/hello.html";
+var path = "/CEbtBjYYdCN";
  $window.location.href ='http://www.google.com';
   // $location.absUrl() = 'http://www.google.com';
 
