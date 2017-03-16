@@ -1,0 +1,109 @@
+<script src="jquery-3.1.1.min.js"></script>
+<script src="highmaps.js"></script>
+<script src="data.js"></script>
+<script src="exporting.js"></script>
+
+
+<div id="container" style="min-width: 310px; max-width: 600px"></div>
+<style>
+#container {
+    height: 500px;
+    min-width: 310px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.loading {
+    margin-top: 10em;
+    text-align: center;
+    color: gray;
+}
+</style>
+<script>
+
+$.getJSON('1.json', function (geojson) {
+
+    // Prepare the geojson
+    var states = Highcharts.geojson(geojson, 'map'),
+        rivers = Highcharts.geojson(geojson, 'mapline'),
+        cities = Highcharts.geojson(geojson, 'mappoint'),
+        specialCityLabels = {
+            'jharkhand': {
+                align: 'right'
+            }
+        };
+
+    // Skip or move some labels to avoid collision
+    $.each(states, function () {
+        // Disable data labels
+
+    });
+
+    $.each(cities, function () {
+        if (specialCityLabels[this.name]) {
+            this.dataLabels = specialCityLabels[this.name];
+        }
+    });
+
+
+    // Initiate the chart
+    Highcharts.mapChart('container', {
+
+        title: {
+            text: ''
+        },
+
+        mapNavigation: {
+            enabled: true,
+            buttonOptions: {
+                verticalAlign: 'bottom'
+            }
+        },
+
+
+        series: [{
+            name: 'States and territories',
+            data: states,
+            color: Highcharts.getOptions().colors[2],
+            states: {
+                hover: {
+                    color: Highcharts.getOptions().colors[4]
+                }
+            },
+            dataLabels: {
+                enabled: true,
+                format: '{point.name}',
+                style: {
+                    width: '80px' // force line-wrap
+                }
+            },
+            tooltip: {
+                pointFormat: '{point.name}'
+            }
+        }, {
+            name: 'Rivers',
+            type: 'mapline',
+            data: rivers,
+            color: Highcharts.getOptions().colors[0],
+            tooltip: {
+                pointFormat: '{point.properties.NAME}'
+            }
+        }, {
+            name: 'Cities',
+            type: 'mappoint',
+            data: cities,
+            color: 'black',
+            marker: {
+                radius: 2
+            },
+            dataLabels: {
+                align: 'left',
+                verticalAlign: 'middle'
+            },
+            animation: false,
+            tooltip: {
+                pointFormat: '{point.name}'
+            }
+        }]
+    });
+});
+</script>

@@ -1,0 +1,97 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Highcharts Example</title>
+    <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>-->
+    <script type="text/javascript" src="js/jquery2.min.js"></script>
+    <style type="text/css">
+        $ {
+            demo.css;
+        }
+    </style>
+    <script type="text/javascript">
+$(function () {
+    // Create the chart
+    //alert("loaded - ");
+    //Highcharts.chart('container', GetJsonData());
+    $.ajax({
+        url: 'http://services.resultstrack.in/ResultsTrackService.asmx/getVulnerableChildDDChart',
+        //url:'actualdata.json',
+        dataType: 'jsonp',
+        method:"GET",
+        success: function (data) {
+            //alert("loaded - " + data.d);
+            var data = JSON.parse(data.d);
+            //------------------------------------------------------
+            var hChart = {};
+            hChart.chart = { type:"column" };
+            hChart.title = { text:"Child\'s Vulnerability Index - Category" };
+            hChart.subtitle = { text:"Click the columns to view Indicators." };
+            hChart.xAxis = { type:"category" };
+            hChart.yAxis = {
+                title : { text:"Total percent market share" }
+            };
+            hChart.legend = { enable:false };
+            hChart.plotOptions = {
+                series :{
+                    borderWidth: 0,
+                    dataLabels: {
+                        enable:true,
+                        format:"{ point.y: .1f }%"
+                    }
+                }
+            };
+            hChart.tooltip = {
+                headerFormat: "<span style='font-size:11px'> { series.name } </span><br>",
+                pointFormat: "<span style='color:{point.color}'> { point.name } </span>: <b> { point.y: .2f } %</b> of total<br/>"
+            };
+            //------------------------------------------------------------------
+            hChart.series =[];
+            var oSeries = {};
+            oSeries.name = "Vulnerability";
+            oSeries.colorByPoint = true;
+            oSeries.data = [];                
+            for(var i=0; i< data.Category.length;i++)
+            {
+                var sData = {
+                    name:data.Category[i]["ques_category"],
+                    y:data.Category[i]["no_of_children"],
+                    drilldown:data.Category[i]["ques_category"]
+                }
+                oSeries.data.push(sData);                    
+            }
+            hChart.series.push(oSeries);
+
+            //Create Drilldown
+            hChart.drilldown = {};
+            hChart.drilldown.series = [];
+            for (var i = 0; i < data.Category.length; i++) {
+                var ddSeries = {};
+                ddSeries.name = data.Category[i]["ques_category"];
+                ddSeries.id = data.Category[i]["ques_category"];
+                ddSeries.data = [];
+                //Collect Child
+                for (var j = 0; j < data.Category[i].childCategories.length; j++) {
+                    ddSeries.data.push([data.Category[i].childCategories[j].childCategory, data.Category[i].childCategories[j].no_of_children]);
+                }
+                hChart.drilldown.series.push(ddSeries);
+            }
+            //------------------------------------------------------
+            Highcharts.chart('container', hChart);
+        },
+        failure: function (err) {
+            alert("error");
+        }
+    });    
+});
+    </script>
+</head>
+<body>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+</body>
+</html>
